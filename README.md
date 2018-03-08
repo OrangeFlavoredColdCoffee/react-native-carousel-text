@@ -2,7 +2,7 @@
 A React Native module for vertical scroll text Ads 垂直滚动的文字组件（滚动广告）
 
 
-http://img.blog.csdn.net/20180308114144824?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFvb0xlZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast
+![img](https://github.com/OrangeFlavoredColdCoffee/react-native-carousel-text/blob/master/img/demo.gif/img/demo.gif)
 
 ####Setup Install the package:
 
