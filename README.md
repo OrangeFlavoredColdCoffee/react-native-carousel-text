@@ -3,12 +3,11 @@ A React Native module for vertical scroll text Ads 垂直滚动的文字组件�
 
 
 http://img.blog.csdn.net/20180308114144824?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFvb0xlZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast
+
 ####Setup Install the package:
 
-rnpm install react-native-image-resizer@0.0.12
+npm install react-native-carousel-text
 
-Manual linking
-Manual link information for Android: Link
 
 #### Usage example
 import ScrollVertical from '../components/ScrollVertical';
