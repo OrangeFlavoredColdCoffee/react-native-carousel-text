@@ -12,30 +12,50 @@ npm install react-native-carousel-text
 #### Usage example
 import ScrollVertical from '../components/ScrollVertical';
 
-data source (数据结构)
-``` 
-     let array = [{ content: '' }];
-       if (news && news.length > 0) {
-         array = [];
-         for (const item of news) {
-           array.push({ content: item.name });
-         }
-       }
 ```
+                       <ScrollVertical
+                         onChange={((index) => {
+                           this.index = index;
+                         })}
+                         enableAnimation
+                         delay={2000}
+                         duration={500}
+                         scrollHeight={45}
+                       >
+                         <TouchableOpacity
+                           style={[
+                             {
+                               justifyContent: 'center',
+                               height: 45,
+                               alignItems: 'flex-start',
+                               marginLeft: 15,
+                             }]} onPress={() => Alert.alert('11')}
+                         >
+                           <Text style={{color: '#ff00ff'}}>广告1</Text>
+                         </TouchableOpacity>
+                         <TouchableOpacity
+                           style={[
+                             {
+                               justifyContent: 'center',
+                               height: 45,
+                               alignItems: 'flex-start', marginLeft: 15,
+                             }]}
+                           onPress={() => Alert.alert('11')}
+               
+                         >
+                           <Text>广告2</Text>
+                         </TouchableOpacity>
+                         <TouchableOpacity
+                           style={[
+                             {
+                               justifyContent: 'center',
+                               height: 45,
+                               alignItems: 'flex-start', marginLeft: 15,
+                             }]} onPress={() => Alert.alert('11')}
+                         >
+                           <Text>广告3</Text>
+                         </TouchableOpacity>
+                       </ScrollVertical>
 
-usage
-```
-                <ScrollVertical
-                  onChange={((index) => {
-                    this.index = index;
-                  })}
-                  enableAnimation
-                  data={array}
-                  delay={2000}
-                  duration={500}
-                  scrollHeight={45}
-                  scrollStyle={{ alignItems: 'flex-start', marginLeft: 15 }}
-                  textStyle={{ color: '#333', fontSize: 14 }}
-                />
 
 ```

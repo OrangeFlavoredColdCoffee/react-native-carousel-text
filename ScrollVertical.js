@@ -3,7 +3,7 @@ import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    // 必须有背景或border，否则高度不起作用
+    // 必须有背景或border
     backgroundColor: 'transparent',
     overflow: 'hidden',
   },
@@ -35,15 +35,35 @@ class ScrollVertical extends Component {
       // 滚动持续时间
       duration: this.props.duration || 500,
       enableAnimation: true,
+      enableTouchable: true,
     };
   }
 
   componentWillMount() {
-    const content = this.props.data || [];
-    if (content.length !== 0) {
-      const h = (content.length + 1) * this.state.scrollHeight;
+    const children = this.props.children || [];
+    let pages = [];
+    if (children && children.length > 1) {
+      for (let i = 0; i < children.length; i += 1) {
+        pages.push(children[i]);
+      }
+      pages.push(children[0]);
+      pages.push(children[1]);
+    } else if (children.length === 1) {
+      pages.push(children[0]);
+    } else if (children.length === 0) {
+    } else if (children) {
+      pages.push(children);
+    } else {
+      return (
+        <Text style={{ backgroundColor: 'white' }}>
+          You are supposed to add children inside Carousel
+        </Text>
+      );
+    }
+    if (pages.length !== 0) {
+      const h = (pages.length + 1) * this.state.scrollHeight;
       this.setState({
-        content: content.concat(content[0]),
+        content: pages.concat(pages[0]),
         contentOffsetY: h,
       });
     }
@@ -55,8 +75,8 @@ class ScrollVertical extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ enableAnimation: !!nextProps.enableAnimation }, () => {
-      this.startAnimation();
-    },
+        this.startAnimation();
+      },
     );
   }
 
@@ -67,22 +87,6 @@ class ScrollVertical extends Component {
     if (this.state.translateValue) {
       this.state.translateValue.removeAllListeners();
     }
-  }
-
-  createItem(item, index) {
-    return (
-      <View
-        key={index}
-        style={[
-          {
-            justifyContent: 'center',
-            height: this.state.scrollHeight,
-          },
-          this.props.scrollStyle]}
-      >
-        <Text style={[styles.textDefault, this.props.textStyle]}>{item.content}</Text>
-      </View>
-    );
   }
 
   startAnimation() {
@@ -113,9 +117,7 @@ class ScrollVertical extends Component {
         },
       ),
     ]).start(() => {
-      // 无缝切换
       if (this.state.tempValue - this.state.scrollHeight === -this.state.contentOffsetY) {
-        // 快速重置初始状态
         this.state.translateValue.setValue({ x: 0, y: 0 });
         this.state.tempValue = 0;
       }
@@ -137,7 +139,7 @@ class ScrollVertical extends Component {
                   transform: [{ translateY: this.state.translateValue.y }],
                 }]}
             >
-              {this.state.content.map(this.createItem.bind(this))}
+              {this.state.content}
             </Animated.View>
             : null
         }
