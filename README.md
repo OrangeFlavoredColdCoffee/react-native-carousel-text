@@ -10,7 +10,7 @@ npm install react-native-carousel-text
 
 
 #### Usage example
-import ScrollVertical from '../components/ScrollVertical';
+import ScrollVertical from 'react-native-carousel-text';
 
 ```
                        <ScrollVertical
